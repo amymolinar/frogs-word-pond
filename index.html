@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#7bcad0">
+<title>Frog's Word Pond — Nouns, Verbs & Adjectives</title>
+<style>
+:root{font-family:"Trebuchet MS","Comic Sans MS",Arial,sans-serif;color:#264158;background:#e8faf5;--sky1:#9de6ef;--sky2:#e3fbf4;--hill:#89dca7;--far:#b1e4ae;--pond:#59c5d7;--ponddeep:#329fbf;--flare:#f9da85}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 9% 6%,#fff8cd 0,transparent 25%),linear-gradient(145deg,#d7f8f1,#e5f1ff 54%,#fbf4fe)}button,select{font:inherit}button{cursor:pointer}button:focus-visible,select:focus-visible{outline:4px solid #f8a838;outline-offset:3px}
+.shell{max-width:1120px;margin:auto;padding:19px 18px 30px}
+.header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}.brand-bubble{width:61px;height:61px;border-radius:20px;display:grid;place-items:center;background:#d0f5cf;border:3px solid #fff;box-shadow:0 5px 0 #ace3c7;font-size:32px}.brand h1{font-size:clamp(26px,3.5vw,38px);line-height:1.06;letter-spacing:-.8px;margin:0;color:#215e75;font-weight:1000}.brand h1 em{font-style:normal;color:#27a97e}.brand p{margin:6px 0 0;font-size:13px;color:#4b8192;font-weight:800}
+.header-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.tiny-button{border:2px solid #c9e9e6;border-bottom-width:4px;border-radius:12px;background:#fff;color:#3f667d;font-size:13px;font-weight:900;padding:9px 12px;min-height:41px}.tiny-button:active{transform:translateY(2px);border-bottom-width:2px}
+.topbar{background:#fff;border:2px solid #d7f0ec;box-shadow:0 5px 19px #3e86821a;border-radius:22px;padding:13px 17px;display:flex;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:13px}.field{display:flex;align-items:center;gap:9px;font-size:13px;color:#568196;font-weight:900}.field select{border:2px solid #d5e8eb;border-radius:11px;background:#eef9fc;padding:10px 12px;color:#245976;font-size:15px;font-weight:900;cursor:pointer}.rules{font-size:13px;color:#638395;font-weight:800;flex:1 1 235px}.stats{display:flex;gap:9px;margin-left:auto}.stat{min-width:78px;background:#eef9f6;text-align:center;border-radius:12px;padding:7px 11px}.stat strong{display:block;color:#247ca7;font-size:22px;line-height:1.1}.stat small{font-size:11px;color:#61829a;font-weight:800}.stat.star strong{color:#bd8b16}
+.game{--sky1:#9de6ef;--sky2:#e3fbf4;--hill:#89dca7;--far:#b1e4ae;--pond:#59c5d7;--ponddeep:#329fbe;--flare:#ffde87;position:relative;overflow:hidden;isolation:isolate;border:5px solid #fff;border-radius:29px;box-shadow:0 14px 0 #96d7d1,0 23px 35px #3f9eae30;min-height:632px;background:linear-gradient(180deg,var(--sky1),var(--sky2));transition:background 1s ease}
+.game[data-theme="1"]{--sky1:#ffd0d3;--sky2:#fff2c8;--hill:#90d8a7;--far:#f8d690;--pond:#70c9bb;--ponddeep:#3aa6a3;--flare:#f4afd0}
+.game[data-theme="2"]{--sky1:#344c87;--sky2:#688ab9;--hill:#6aa0a7;--far:#8093b1;--pond:#457cae;--ponddeep:#2f528c;--flare:#fff7bc}
+.game[data-theme="3"]{--sky1:#a2d8ff;--sky2:#fff3e3;--hill:#8bc9c6;--far:#d2a8ec;--pond:#6ccbdd;--ponddeep:#539ace;--flare:#e8b0ff}
+.scene-sky{position:absolute;inset:0 0 22%;pointer-events:none;overflow:hidden;background:linear-gradient(var(--sky1),var(--sky2))}.sun{position:absolute;top:18px;right:11%;height:70px;width:70px;border-radius:100%;background:var(--flare);box-shadow:0 0 0 16px #fff9aa27,0 0 65px var(--flare);opacity:.8}.game[data-theme="2"] .sun{background:#fff8c8;box-shadow:0 0 0 12px #fffdec20,0 0 70px #c0d5ff;right:12%}.cloud{position:absolute;background:#fffaf4a6;width:128px;height:36px;border-radius:40px;top:85px;left:7%;animation:drift 19s linear infinite alternate}.cloud:before,.cloud:after{content:"";position:absolute;background:inherit;border-radius:50%}.cloud:before{height:58px;width:64px;bottom:10px;left:20px}.cloud:after{height:41px;width:48px;bottom:6px;right:13px}.cloud.second{left:76%;top:155px;transform:scale(.65);animation-duration:26s}.hill{position:absolute;left:-7%;bottom:-4%;width:78%;height:48%;border-radius:60% 60% 0 0;background:var(--far)}.hill.other{left:51%;width:75%;height:37%;background:var(--hill)}.stars{display:none;position:absolute;inset:0;background-image:radial-gradient(circle,#fffae9 1.5px,transparent 2px);background-size:70px 59px;opacity:.66}.game[data-theme="2"] .stars{display:block}.theme-stamp{position:absolute;top:15px;left:16px;z-index:3;background:#ffffffde;border:2px solid #ffffffb0;border-radius:30px;padding:8px 13px;font-size:12px;color:#3b697f;font-weight:1000}.scene-leaves{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}.decor{position:absolute;font-size:clamp(23px,3vw,39px);filter:drop-shadow(0 3px 1px #00000012);animation:float 4s ease-in-out infinite}.decor.left{left:3%;top:39%}.decor.right{right:3%;top:42%;animation-delay:-1.7s}.decor.low-left{left:9%;bottom:25%;animation-delay:-2.6s}.decor.low-right{right:9%;bottom:27%;animation-delay:-.8s}
+.challenge{position:relative;z-index:5;width:min(83%,780px);margin:60px auto 0;min-height:119px;text-align:center;border-radius:24px;background:#fffffff2;border:4px solid #ffffff;box-shadow:0 8px 0 #527c9420,0 11px 28px #28496c13;padding:13px 14px 16px}.challenge .eyebrow{margin:0;color:#6692a2;font-size:13px;font-weight:1000;letter-spacing:.8px;text-transform:uppercase}.challenge .word-prompt{font-family:"Comic Sans MS","Trebuchet MS",sans-serif;margin:7px auto 0;line-height:1.24;color:#2a5571;font-size:clamp(29px,4.9vw,53px);font-weight:900;overflow-wrap:anywhere}.word-prompt.level2{font-size:clamp(21px,3vw,34px);line-height:1.55}.word-prompt .highlight{padding:1px 8px 5px;border-radius:10px;background:#ffdc75;box-shadow:inset 0 -4px 0 #f4b940;color:#473c30;white-space:nowrap}.speak-button{position:absolute;right:-15px;top:-15px;border:3px solid #fff;border-radius:50%;width:48px;height:48px;background:#ffdc88;color:#80541d;font-size:23px;box-shadow:0 4px 0 #e8ad52}
+.pond{position:absolute;z-index:2;left:-8%;width:116%;height:46%;bottom:-12%;border-radius:50% 50% 0 0;background:linear-gradient(180deg,var(--pond),var(--ponddeep));box-shadow:0 -11px 0 #c1f0df75,inset 0 26px 15px #fff8;transition:background .6s}.pond:before{content:"";position:absolute;inset:20px 10px 20%;background:repeating-radial-gradient(ellipse at 15% 40%,transparent 0 28px,#e9ffff3a 29px 31px,transparent 33px 88px);opacity:.8;pointer-events:none}.ripple{position:absolute;width:135px;height:23px;border:4px solid #e0fffc8c;border-radius:50%;top:22%;left:51%;transform:translateX(-50%);opacity:.7;animation:float 3s ease-in-out infinite}
+.frog-jumper{position:absolute;z-index:4;top:245px;left:calc(50% - 64px);width:128px;height:143px;filter:drop-shadow(0 7px 0 #1a74835e);transform-origin:50% 65%;pointer-events:none;animation:float 2.7s ease-in-out infinite}.frog-jumper.jump{animation:none}.frog-jumper svg{height:100%;width:100%;overflow:visible}.frog-face{transition:transform .15s}.frog-jumper.sad .mouth-happy{display:none}.frog-jumper:not(.sad) .mouth-sad{display:none}.frog-jumper.sad .frog-face{transform:translateY(4px)}
+.pad-row{position:absolute;z-index:6;left:3%;right:3%;bottom:57px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:end}.lily{border:0;background:transparent;padding:0;min-width:0;position:relative;isolation:isolate;min-height:133px;transition:transform .15s;touch-action:manipulation}.lily:hover:not(:disabled){transform:translateY(-6px)}.lily:active:not(:disabled){transform:translateY(2px)}.lily:disabled{cursor:default}.lily .leaf{position:absolute;inset:16px 0 0;display:block;filter:drop-shadow(0 9px 0 #154e7973);transition:filter .2s;transform:rotate(var(--rotate))}.lily svg{display:block;width:100%;height:100%}.lily .leaf path{stroke-width:5;stroke-linejoin:round}.lily[data-tag="noun"]{--pad:#f46d78;--edge:#b9334a;--shine:#ffc0bf;--rotate:-3deg}.lily[data-tag="verb"]{--pad:#63cf83;--edge:#279759;--shine:#b5f5c4;--rotate:2deg}.lily[data-tag="adjective"]{--pad:#ffd15b;--edge:#c28d19;--shine:#fff0a6;--rotate:-2deg}.lily .text{position:relative;z-index:2;display:flex;justify-content:center;align-items:center;min-height:110px;gap:2px;flex-direction:column;color:#263e4a;font-weight:1000;text-shadow:0 1px #ffffffb3}.lily .tag-title{font-size:clamp(18px,2.7vw,30px);letter-spacing:-.5px}.lily .tag-hint{font-size:clamp(10px,1.3vw,14px);opacity:.8}.lily.good{animation:pad-pop .5s ease}.lily.bad{animation:wobble .45s ease}.lily.good .leaf{filter:drop-shadow(0 0 14px #fffcb8) drop-shadow(0 7px 0 #13627a5c)}
+.message{position:absolute;z-index:10;left:50%;bottom:201px;transform:translateX(-50%);min-width:210px;max-width:90%;padding:10px 17px;border-radius:100px;background:#fffdf6f0;border:3px solid #fff;color:#307c87;font-size:16px;font-weight:1000;text-align:center;box-shadow:0 5px 0 #7ac5a766}.message.good{background:#e5ffe9;color:#24744b}.message.bad{background:#fff3dc;color:#a06722}
+.pond-footer{position:relative;z-index:7;display:flex;align-items:center;justify-content:center;gap:10px;padding:10px 14px;flex-wrap:wrap}.bottom-note{font-size:13px;font-weight:900;color:#568496}.progress-box{display:flex;align-items:center;gap:10px;justify-content:center;margin:17px auto 0}.pond-label{color:#386f88;font-weight:1000;font-size:13px}.progress-track{display:flex;gap:5px}.mini-star{width:19px;height:19px;display:grid;place-items:center;border-radius:50%;background:#d1e9e5;border:1px solid #b9d8d3;color:#b5cecb;font-size:12px}.mini-star.filled{background:#ffcc65;border-color:#eca941;color:#985f18;box-shadow:0 2px #d7a351}
+.help{font-size:13px;color:#698e97;text-align:center;margin:14px 0 0;font-weight:700}.help strong{color:#43798c}.stage-toast{position:absolute;z-index:30;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;pointer-events:none;opacity:0;transform:scale(.97);transition:opacity .35s,transform .35s;background:#21518a9c;text-align:center;color:white;text-shadow:0 3px 8px #143c6a;padding:15px}.stage-toast.show{opacity:1;transform:scale(1)}.stage-toast .stage-big{font-size:60px}.stage-toast strong{font-size:clamp(26px,4vw,42px)}.stage-toast small{font-size:19px;font-weight:900}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}@keyframes drift{to{translate:20px 0}}@keyframes wobble{20%{transform:rotate(-8deg)}40%{transform:rotate(7deg)}65%{transform:rotate(-5deg)}100%{transform:rotate(0)}}@keyframes pad-pop{50%{transform:scale(1.06)}}
+@media(max-width:750px){.topbar{gap:9px}.rules{display:none}.game{min-height:594px}.challenge{width:91%;margin-top:58px;min-height:108px}.frog-jumper{top:227px;width:113px;height:126px;left:calc(50% - 56px)}.pad-row{bottom:65px;gap:3px;left:1%;right:1%}.lily{min-height:118px}.lily .leaf{inset:15px -3px 0}.lily .text{min-height:103px}.message{bottom:186px}.decor.low-left,.decor.low-right{display:none}}
+
+/* The frog blinks gently on his own, independently of his hops and expressions. */
+.frog-eye{transform-box:fill-box;transform-origin:center;transition:transform 90ms ease-in-out}
+.frog-closed-eyes{opacity:0;transition:opacity 90ms ease-in-out}
+.frog-jumper.blinking .frog-eye{transform:scaleY(.025)}
+.frog-jumper.blinking .frog-closed-eyes{opacity:1}
+@media(prefers-reduced-motion:reduce){.frog-eye,.frog-closed-eyes{transition:none}}
+/* Teacher voice settings stay hidden beside the top Sound button. */
+.header-actions{position:relative;z-index:60}
+.voice-settings-toggle{font-size:17px;min-width:51px;padding:7px 9px;background:#fff9df;border-color:#efdfaa;white-space:nowrap}
+.voice-caret{font-size:11px;color:#946d24;vertical-align:middle}
+.voice-settings-toggle[aria-expanded="true"]{background:#ffedb8;border-color:#e6c97d}
+.voice-panel[hidden]{display:none!important}
+.voice-panel{position:absolute;z-index:70;right:0;top:calc(100% + 10px);width:min(380px,calc(100vw - 32px));max-height:min(75vh,640px);overflow-y:auto;background:#fffdf5;border:3px solid #fff;border-radius:19px;box-shadow:0 16px 38px #23526640;padding:16px;display:grid;gap:10px;text-align:left;color:#31576e}
+.voice-panel-title{font-size:17px;font-weight:1000;display:flex;gap:8px;align-items:center;justify-content:space-between}
+.voice-panel-title span{font-size:11px;color:#308b79;background:#e4f8ea;padding:5px 8px;border-radius:9px}
+.voice-field{font-size:12px;font-weight:900;color:#53758a;display:grid;gap:5px}
+.voice-field select{display:block;width:100%;min-width:0;border:2px solid #cbe5e2;border-radius:11px;padding:9px 10px;background:#f6fdfc;color:#244d65;font-weight:800;font-size:13px}
+.voice-panel-buttons{display:flex;gap:8px}
+.voice-panel-buttons button{flex:1;background:#ffebb9;border:2px solid #efd4a0;border-radius:10px;padding:8px 10px;font-size:13px;font-weight:900;color:#80531d}
+.voice-status{margin:0;font-size:12px;line-height:1.45;color:#4d7b85;font-weight:800}
+.voice-note{margin:0;font-size:11px;line-height:1.4;color:#728d98;font-weight:700}
+@media(max-width:490px){.voice-settings-toggle{font-size:15px;min-width:40px;padding:7px 6px}.voice-panel{left:0;right:auto;width:min(360px,calc(100vw - 32px))}}
+@media(max-width:490px){.shell{padding:12px 8px 20px}.header{margin:0 5px 11px}.brand-bubble{width:48px;height:48px;font-size:26px;border-radius:15px}.brand h1{font-size:26px}.brand p{font-size:11px}.tiny-button{font-size:12px;padding:7px 9px;min-height:37px}.topbar{padding:11px 10px;gap:8px}.field{gap:5px}.field select{font-size:13px;padding:8px}.stats{gap:4px;margin-left:0}.stat{min-width:57px;padding:5px}.stat strong{font-size:20px}.stat small{font-size:9px}.game{min-height:550px;border-width:3px;border-radius:22px}.challenge{margin-top:58px;padding:10px 9px 13px;min-height:105px}.challenge .word-prompt{font-size:clamp(27px,8vw,39px)}.challenge .word-prompt.level2{font-size:clamp(19px,5vw,25px)}.challenge .eyebrow{font-size:11px}.speak-button{width:40px;height:40px;right:-8px;top:-14px;font-size:19px}.frog-jumper{top:224px;width:96px;height:108px;left:calc(50% - 48px)}.pad-row{bottom:57px;gap:0}.lily{min-height:110px}.lily .leaf{inset:18px -3px 0}.lily .text{min-height:101px}.lily .tag-title{font-size:clamp(17px,4.8vw,22px)}.lily .tag-hint{font-size:9px}.message{font-size:12px;min-width:0;width:90%;bottom:168px;padding:8px 10px}.theme-stamp{font-size:10px;left:8px;padding:6px 9px}.decor{font-size:24px}.progress-box{gap:6px}.mini-star{height:16px;width:16px;font-size:10px}.progress-track{gap:3px}.pond-label{font-size:11px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<main class="shell">
+  <header class="header">
+    <div class="brand"><div class="brand-bubble" aria-hidden="true">🐸</div><div><h1>Frog's <em>Word Pond!</em></h1><p>Hop into nouns, verbs & adjectives</p></div></div>
+    <div class="header-actions">
+      <button class="tiny-button" id="sfx-btn" type="button" aria-pressed="true" title="Turn game sound effects on or off">♫ Sound on</button>
+      <button class="tiny-button voice-settings-toggle" id="voice-toggle" type="button" aria-expanded="false" aria-controls="voice-panel" aria-label="Open reading voice settings" title="Choose a reading voice">🔊 <span class="voice-caret">▾</span></button>
+      <button class="tiny-button" id="restart-btn" type="button">↻ New game</button>
+      <section class="voice-panel" id="voice-panel" aria-label="Reading voice settings" hidden>
+        <div class="voice-panel-title">🎙️ Reading Voice <span>Clara preferred</span></div>
+        <label class="voice-field" for="voice-picker">Choose a voice
+          <select id="voice-picker" aria-label="Reading voice"><option value="auto">⭐ Clara / best available</option></select>
+        </label>
+        <label class="voice-field" for="voice-speed">Reading speed
+          <select id="voice-speed" aria-label="Reading speed">
+            <option value="0.75">🐢 Extra slow</option>
+            <option value="0.85" selected>🌼 Gentle pace</option>
+            <option value="1">Normal pace</option>
+          </select>
+        </label>
+        <div class="voice-panel-buttons">
+          <button type="button" id="voice-test">▶ Try voice</button>
+          <button type="button" id="voice-refresh">↻ Find voices</button>
+        </div>
+        <p id="voice-status" class="voice-status" aria-live="polite">Looking for voices on this device…</p>
+        <p class="voice-note">The little speaker by each word will replay it. Game sounds are separate.</p>
+      </section>
+    </div>
+  </header>
+  <section class="topbar" aria-label="Game settings and score">
+    <label class="field" for="level">Choose level <select id="level"><option value="1">🌱 Level 1 · Words</option><option value="2">🌼 Level 2 · Sentences</option></select></label>
+    <div class="rules" id="rules">Read the word. Tap the correct lily pad!</div>
+    <div class="stats"><div class="stat"><strong id="score">0</strong><small>Correct</small></div><div class="stat star"><strong id="streak">0</strong><small>In a row</small></div></div>
+  </section>
+  <section class="game" id="game" data-theme="0" aria-label="Interactive grammar pond">
+    <div class="scene-sky" aria-hidden="true"><div class="stars"></div><div class="sun"></div><div class="cloud"></div><div class="cloud second"></div><div class="hill"></div><div class="hill other"></div></div>
+    <div class="theme-stamp" id="theme-stamp">☀️ Sunny Pond</div>
+    <div class="scene-leaves" aria-hidden="true"><span class="decor left" id="decor-a">🌼</span><span class="decor right" id="decor-b">🦋</span><span class="decor low-left" id="decor-c">🌷</span><span class="decor low-right" id="decor-d">🐝</span></div>
+    <div class="challenge" id="challenge"><div class="eyebrow" id="eyebrow">What kind of word?</div><div class="word-prompt" id="prompt" aria-live="polite">Ready?</div><button type="button" class="speak-button" id="read" title="Hear this word or sentence" aria-label="Read aloud">🔊</button></div>
+    <div class="pond" aria-hidden="true"><span class="ripple"></span></div>
+    <div class="frog-jumper" id="frog" aria-hidden="true">
+      <svg viewBox="0 0 150 166" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="31" cy="133" rx="24" ry="15" fill="#40a94d" stroke="#2c8743" stroke-width="4"/><ellipse cx="122" cy="133" rx="24" ry="15" fill="#40a94d" stroke="#2c8743" stroke-width="4"/>
+        <path d="M42 95Q20 108 20 132M108 95Q130 109 129 132" fill="none" stroke="#44b85c" stroke-width="15" stroke-linecap="round"/>
+        <ellipse cx="75" cy="116" rx="50" ry="43" fill="#59cb65" stroke="#2a9b4a" stroke-width="5"/><ellipse cx="75" cy="124" rx="31" ry="27" fill="#b5e987"/>
+        <ellipse cx="75" cy="67" rx="62" ry="54" fill="#5ed16b" stroke="#2a9b4a" stroke-width="5"/>
+        <ellipse cx="40" cy="31" rx="26" ry="27" fill="#5ed16b" stroke="#2a9b4a" stroke-width="5"/><ellipse cx="111" cy="31" rx="26" ry="27" fill="#5ed16b" stroke="#2a9b4a" stroke-width="5"/>
+        <g class="frog-eye" id="frog-eye-left">
+          <ellipse cx="40" cy="30" rx="18" ry="20" fill="white"/>
+          <circle cx="45" cy="35" r="8" fill="#1d5260"/>
+          <circle cx="48" cy="31" r="2.5" fill="white"/>
+        </g>
+        <g class="frog-eye" id="frog-eye-right">
+          <ellipse cx="111" cy="30" rx="18" ry="20" fill="white"/>
+          <circle cx="106" cy="35" r="8" fill="#1d5260"/>
+          <circle cx="109" cy="31" r="2.5" fill="white"/>
+        </g>
+        <g class="frog-closed-eyes" aria-hidden="true">
+          <path d="M25 34 Q40 42 55 34 M96 34 Q111 42 126 34" fill="none" stroke="#257d47" stroke-width="4" stroke-linecap="round"/>
+        </g>
+        <g class="frog-face"><ellipse cx="51" cy="72" rx="4" ry="2.5" fill="#278c48"/><ellipse cx="100" cy="72" rx="4" ry="2.5" fill="#278c48"/><circle cx="29" cy="82" r="8" fill="#ff9f9e" opacity=".75"/><circle cx="121" cy="82" r="8" fill="#ff9f9e" opacity=".75"/>
+        <path class="mouth-happy" d="M49 83 Q76 111 102 83" stroke="#1e6e50" stroke-width="5" stroke-linecap="round" fill="none"/><path class="mouth-sad" d="M52 99Q75 78 98 99" stroke="#1e6e50" stroke-width="5" stroke-linecap="round" fill="none"/></g>
+        <path d="M35 106 Q17 112 15 119 M115 106Q132 113 137 119" fill="none" stroke="#48be60" stroke-width="14" stroke-linecap="round"/>
+        <circle cx="15" cy="119" r="10" fill="#54c76a"/><circle cx="137" cy="119" r="10" fill="#54c76a"/>
+        <path d="M18 118L5 111M16 120L6 130M133 120L144 109M137 121L148 131" stroke="#54c76a" stroke-width="9" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="message" id="message" role="status" aria-live="polite">Choose a lily pad! 🐸</div>
+    <div class="pad-row" role="group" aria-label="Choose noun, verb, or adjective">
+      <button class="lily" data-tag="noun" aria-label="Noun, naming word"><span class="leaf"><svg viewBox="0 0 300 148" preserveAspectRatio="none"><path d="M20 81Q2 47 43 28Q97 -3 165 11Q208 9 220 38L246 29L239 63Q301 90 274 121Q228 147 166 132Q98 148 39 127Q14 113 20 81Z" fill="var(--pad)" stroke="var(--edge)"/><path d="M42 63Q99 20 179 37" fill="none" stroke="var(--shine)" stroke-width="11" stroke-linecap="round" opacity=".85"/></svg></span><span class="text"><span class="tag-title">Noun</span><span class="tag-hint">naming word</span></span></button>
+      <button class="lily" data-tag="verb" aria-label="Verb, action word"><span class="leaf"><svg viewBox="0 0 300 148" preserveAspectRatio="none"><path d="M20 81Q2 47 43 28Q97 -3 165 11Q208 9 220 38L246 29L239 63Q301 90 274 121Q228 147 166 132Q98 148 39 127Q14 113 20 81Z" fill="var(--pad)" stroke="var(--edge)"/><path d="M42 63Q99 20 179 37" fill="none" stroke="var(--shine)" stroke-width="11" stroke-linecap="round" opacity=".85"/></svg></span><span class="text"><span class="tag-title">Verb</span><span class="tag-hint">action word</span></span></button>
+      <button class="lily" data-tag="adjective" aria-label="Adjective, describing word"><span class="leaf"><svg viewBox="0 0 300 148" preserveAspectRatio="none"><path d="M20 81Q2 47 43 28Q97 -3 165 11Q208 9 220 38L246 29L239 63Q301 90 274 121Q228 147 166 132Q98 148 39 127Q14 113 20 81Z" fill="var(--pad)" stroke="var(--edge)"/><path d="M42 63Q99 20 179 37" fill="none" stroke="var(--shine)" stroke-width="11" stroke-linecap="round" opacity=".85"/></svg></span><span class="text"><span class="tag-title">Adjective</span><span class="tag-hint">describing word</span></span></button>
+    </div>
+    <div class="stage-toast" id="stage-toast" aria-live="polite"><div class="stage-big" id="stage-emoji">🌸</div><strong id="stage-title">New pond!</strong><small id="stage-description">Keep hopping!</small></div>
+  </section>
+  <div class="progress-box" aria-label="Progress until next pond"><span class="pond-label" id="pond-progress-label">Next pond:</span><div class="progress-track" id="stars"></div></div>
+  <p class="help">🐸 <strong>Right answer?</strong> Frog hops! &nbsp; 💦 <strong>Oops?</strong> Try another pad. &nbsp; 🔊 The word is read automatically. Tap the speaker to hear it again.</p>
+</main>
+<script>
+'use strict';
+// Concrete, familiar words appropriate for first-grade naming/action/describing practice.
+// None of the verb answers is a linking or auxiliary verb.
+const BANK={
+ noun:['puppy','kitten','rabbit','turtle','teacher','firefighter','balloon','pencil','crayon','garden','flower','butterfly','caterpillar','ladybug','beetle','bird','duck','penguin','dolphin','whale','squirrel','snowman','rainbow','puddle','backpack','lunchbox','sandwich','apple','banana','carrot','pumpkin','cookie','bicycle','wagon','train','rocket','planet','moon','star','cloud','river','waterfall','mountain','forest','meadow','pond','lily','tree','nest','desk','chair','book','story','picture','school','library','playground','sandbox','shoe','jacket','mittens','scarf','boots','hat','window','door','basket','button','feather','shell','pebble','acorn','branch','twig','bridge','castle','dragon','robot','pirate','ocean','beach','island','volcano','dinosaur','tractor','farmer','artist','baker','gardener','astronaut','zebra','giraffe','elephant','lion','tiger','monkey','koala','panda','frog','fish','bee','ant','sister','brother','grandma','grandpa','doctor','nurse','truck','pillow','blanket','teddy','pocket'],
+ verb:['hops','skips','jumps','runs','walks','claps','sings','dances','reads','writes','draws','paints','builds','plants','washes','scrubs','sweeps','cooks','bakes','climbs','crawls','giggles','laughs','whispers','shouts','yawns','sleeps','rests','swims','dives','floats','sails','flies','flutters','buzzes','chirps','quacks','barks','meows','purrs','roars','growls','squeaks','races','follows','marches','wiggles','wobbles','twirls','spins','rolls','bounces','tosses','catches','throws','kicks','stretches','stomps','stirs','mixes','pours','drinks','eats','chews','munches','nibbles','sniffs','snuggles','hugs','waves','smiles','frowns','grins','blinks','blows','melts','grows','shines','glows','sparkles','glides','slides','scoots','skates','hikes','digs','rakes','picks','pulls','pushes','lifts','carries','opens','closes','helps','fixes','folds','stacks','sorts','counts','taps','pets','tickles','splashes','sprays','sprinkles','drops','fills','finds','hides','searches','holds','grabs','peeks','watches','listens','whistles','hums','cheers','nods'],
+ adjective:['fluffy','tiny','little','giant','huge','small','tall','short','happy','sad','silly','kind','brave','gentle','quiet','loud','soft','smooth','rough','bumpy','shiny','sparkly','bright','dark','warm','cold','hot','cool','wet','dry','sticky','slippery','fuzzy','striped','spotted','spiky','round','square','curly','straight','wavy','sleepy','hungry','thirsty','playful','cheerful','friendly','colorful','beautiful','pretty','muddy','dusty','rainy','sunny','snowy','windy','cloudy','stormy','red','blue','yellow','green','purple','pink','orange','golden','silver','brown','white','black','fresh','juicy','sweet','sour','salty','crunchy','smooth','crisp','delicious','funny','gigantic','tasty','yummy','juicy','heavy','light','fast','slow','quick','careful','curious','busy','proud','shy','clean','dirty','early','late','young','old','lovely','cozy','fancy','fierce','calm','gentle','woolly','feathery','icy']
+};
+// Each scene keeps the subjects, actions and objects compatible: no "purple sandwich dances" sentences.
+const SCENES=[
+ {s:['playful puppy','happy puppy','little dog'],v:['chases','fetches','carries'],o:['red ball','small stick','yellow toy']},
+ {s:['fluffy kitten','curious kitten','little cat'],v:['chases','watches','catches'],o:['tiny mouse','small bug','fuzzy toy']},
+ {s:['quick rabbit','little rabbit','hungry rabbit'],v:['eats','nibbles','munches'],o:['crunchy carrot','green leaf','tasty vegetable']},
+ {s:['little bird','busy bird','blue bird'],v:['gathers','carries','finds'],o:['small twig','soft feather','tiny leaf']},
+ {s:['busy bee','little bee','happy bee'],v:['visits','finds','explores'],o:['yellow flower','purple blossom','pretty garden']},
+ {s:['brave firefighter','helpful firefighter','strong firefighter'],v:['carries','holds','lifts'],o:['heavy hose','long ladder','red bucket']},
+ {s:['happy child','creative child','kind child'],v:['draws','paints','colors'],o:['funny picture','bright rainbow','pretty flower']},
+ {s:['friendly teacher','kind teacher','happy teacher'],v:['reads','holds','opens'],o:['funny story','big book','colorful book']},
+ {s:['busy baker','happy baker','careful baker'],v:['bakes','makes','decorates'],o:['sweet cookie','little cake','tasty cupcake']},
+ {s:['helpful gardener','busy gardener','kind gardener'],v:['plants','grows','waters'],o:['pretty flower','red tomato','little seedling']},
+ {s:['strong elephant','big elephant','gentle elephant'],v:['carries','lifts','pushes'],o:['heavy log','small branch','large bucket']},
+ {s:['playful monkey','silly monkey','hungry monkey'],v:['eats','grabs','carries'],o:['ripe banana','juicy mango','sweet fruit']},
+ {s:['smart dolphin','playful dolphin','happy dolphin'],v:['chases','catches','follows'],o:['little fish','silver fish','tiny fish']},
+ {s:['little penguin','hungry penguin','happy penguin'],v:['catches','eats','finds'],o:['small fish','silver fish','tiny fish']},
+ {s:['busy squirrel','quick squirrel','little squirrel'],v:['gathers','hides','carries'],o:['brown acorn','tasty nut','small twig']},
+ {s:['brave astronaut','curious astronaut','happy astronaut'],v:['explores','visits','sees'],o:['distant planet','bright star','cratered moon']},
+ {s:['friendly robot','little robot','silly robot'],v:['stacks','carries','sorts'],o:['wooden block','heavy box','colorful cube']},
+ {s:['happy farmer','busy farmer','kind farmer'],v:['picks','grows','gathers'],o:['red apple','ripe peach','juicy tomato']},
+ {s:['young artist','creative artist','happy artist'],v:['draws','paints','colors'],o:['beautiful butterfly','bright flower','blue ocean']},
+ {s:['brave pirate','curious pirate','happy pirate'],v:['finds','opens','carries'],o:['wooden chest','shiny treasure','golden coin']},
+ {s:['little turtle','curious turtle','slow turtle'],v:['finds','explores','crosses'],o:['sandy beach','rocky path','muddy trail']},
+ {s:['cheerful duck','little duck','hungry duck'],v:['eats','finds','pecks'],o:['tasty seed','tiny bug','little crumb']},
+ {s:['playful horse','brown horse','friendly horse'],v:['carries','follows','greets'],o:['young rider','kind farmer','little child']},
+ {s:['fluffy bear','sleepy bear','hungry bear'],v:['finds','eats','gathers'],o:['ripe berry','sweet apple','juicy peach']},
+ {s:['cheerful frog','green frog','little frog'],v:['catches','eats','finds'],o:['tiny fly','small insect','juicy bug']},
+ {s:['gentle whale','big whale','blue whale'],v:['follows','watches','sees'],o:['little boat','playful dolphin','bright fish']},
+ {s:['tiny ant','busy ant','little ant'],v:['carries','finds','moves'],o:['small crumb','green leaf','tiny seed']},
+ {s:['happy toddler','little toddler','curious toddler'],v:['hugs','holds','carries'],o:['fluffy teddy','soft blanket','little doll']},
+ {s:['helpful nurse','kind nurse','happy nurse'],v:['carries','holds','finds'],o:['clean bandage','soft pillow','small blanket']},
+ {s:['clever fox','red fox','hungry fox'],v:['finds','watches','chases'],o:['tiny mouse','little rabbit','small beetle']},
+ {s:['gentle panda','sleepy panda','hungry panda'],v:['eats','chews','munches'],o:['green bamboo','fresh leaf','long stalk']},
+ {s:['busy butterfly','pretty butterfly','colorful butterfly'],v:['visits','finds','explores'],o:['purple flower','sunny garden','green meadow']}
+];
+const THEMES=[
+ {name:'Sunny Pond',emoji:'☀️',decor:['🌼','🦋','🌷','🐝'],caption:'A sunny new day!'},
+ {name:'Flower Garden',emoji:'🌸',decor:['🌷','🌺','🦋','🌻'],caption:'Flowers everywhere!'},
+ {name:'Firefly Pond',emoji:'🌙',decor:['✨','🌟','🌌','🪷'],caption:'The fireflies are glowing!'},
+ {name:'Rainbow Falls',emoji:'🌈',decor:['🌈','✨','🌺','🦄'],caption:'A rainbow celebration!'}
+];
+const $=id=>document.getElementById(id);
+const shuffle=a=>{const x=a.slice();for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x};
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+let level=1,score=0,streak=0,wrong=0,current=null,locked=false,played=[],deck={},tagDeck=[],sfx=true,sceneNo=0,pending=null;
+const VOICE_STORAGE_KEY='frogs-word-pond-voice-v1';
+const SPEED_STORAGE_KEY='frogs-word-pond-speed-v1';
+let voiceList=[],chosenVoiceKey='auto',speechTimer=null,speechTicket=0;
+try{chosenVoiceKey=localStorage.getItem(VOICE_STORAGE_KEY)||'auto'}catch(e){}
+try{const stored=localStorage.getItem(SPEED_STORAGE_KEY);if(['0.75','0.85','1'].includes(stored))$('voice-speed').value=stored}catch(e){}
+const lilyButtons=[...document.querySelectorAll('.lily')];
+function refill(){for(const tag of Object.keys(BANK))deck[tag]=shuffle([...new Set(BANK[tag])]);tagDeck=shuffle(['noun','verb','adjective']);}
+function newTag(){if(!tagDeck.length)tagDeck=shuffle(['noun','verb','adjective']);return tagDeck.pop();}
+function wordChallenge(){const tag=newTag();if(!deck[tag].length)deck[tag]=shuffle([...new Set(BANK[tag])]);return {tag,word:deck[tag].pop()};}
+function sentenceChallenge(){let phrase,arr,tryCount=0;
+  do{const scene=pick(SCENES),s=pick(scene.s).split(' '),o=pick(scene.o).split(' '),v=pick(scene.v);
+    arr=[{w:'The',tag:null},{w:s[0],tag:'adjective'},{w:s[1],tag:'noun'},{w:v,tag:'verb'},{w:'a',tag:null},{w:o[0],tag:'adjective'},{w:o.slice(1).join(' '),tag:'noun'}];
+    phrase=arr.map(x=>x.w).join(' ');tryCount++;
+  }while(played.includes(phrase)&&tryCount<35);
+  played.push(phrase);if(played.length>32)played.shift();
+  const eligible=arr.map((a,i)=>a.tag?i:-1).filter(i=>i>=0);
+  const tag=newTag();const candidates=eligible.filter(i=>arr[i].tag===tag);const highlight=pick(candidates.length?candidates:eligible);
+  return {tag:arr[highlight].tag,words:arr,target:highlight,phrase:phrase+'.'};
+}
+function displayChallenge(){
+  locked=false;clearTimeout(pending);current=level===1?wordChallenge():sentenceChallenge();
+  const prompt=$('prompt');prompt.replaceChildren();prompt.classList.toggle('level2',level===2);
+  if(level===1){prompt.textContent=current.word;$('eyebrow').textContent='What kind of word?'}
+  else{$('eyebrow').textContent='What kind of word is highlighted?';current.words.forEach((token,i)=>{
+    const span=document.createElement('span');span.textContent=token.w+(i===current.words.length-1?'.':'');if(i===current.target)span.className='highlight';prompt.appendChild(span);if(i<current.words.length-1)prompt.append(' ');
+  })}
+  $('message').textContent='Choose a lily pad! 🐸';$('message').className='message';$('frog').classList.remove('sad');lilyButtons.forEach(b=>{b.disabled=false;b.classList.remove('good','bad')});
+  queueAutomaticReading();
+}
+function updateProgress(){
+  $('score').textContent=score;$('streak').textContent=streak;
+  const count=score%10;$('stars').replaceChildren();for(let i=0;i<10;i++){const star=document.createElement('span');star.className='mini-star'+(i<count?' filled':'');star.textContent='★';$('stars').appendChild(star)}
+  $('pond-progress-label').textContent=score>0&&count===0?'New pond unlocked!':'Next pond:';
+}
+function changeTheme(){const n=Math.floor(score/10);sceneNo=n%4;const t=THEMES[sceneNo];$('game').dataset.theme=sceneNo;$('theme-stamp').textContent=t.emoji+' '+t.name;['a','b','c','d'].forEach((k,i)=>$('decor-'+k).textContent=t.decor[i]);}
+function sound(f=550,up=true){if(!sfx)return;try{const ctx=sound.ctx||(sound.ctx=new (window.AudioContext||window.webkitAudioContext)());if(ctx.state==='suspended')ctx.resume();const osc=ctx.createOscillator(),g=ctx.createGain();osc.type=up?'sine':'triangle';osc.frequency.setValueAtTime(f,ctx.currentTime);osc.frequency.exponentialRampToValueAtTime(up?f*1.35:f*.7,ctx.currentTime+.15);g.gain.setValueAtTime(.09,ctx.currentTime);g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.28);osc.connect(g);g.connect(ctx.destination);osc.start();osc.stop(ctx.currentTime+.29)}catch(e){}}
+function hopTo(button,bad=false){const frog=$('frog');frog.classList.add('jump');frog.classList.toggle('sad',bad);if(!frog.animate){setTimeout(()=>frog.classList.remove('jump'),650);return}
+  const fr=frog.getBoundingClientRect(),br=button.getBoundingClientRect();const dx=(br.left+br.width/2)-(fr.left+fr.width/2),dy=(br.top+br.height*.5)-(fr.top+fr.height*.72);
+  frog.animate([{transform:'translate(0,0) scale(1)',offset:0},{transform:`translate(${dx*.48}px,${dy*.15-70}px) rotate(${bad?12:-10}deg) scale(1.08)`,offset:.34},{transform:`translate(${dx}px,${dy-15}px) rotate(0deg) scale(.94)`,offset:.66},{transform:'translate(0,0) scale(1)',offset:1}],{duration:bad?730:900,easing:'ease-in-out'}).onfinish=()=>frog.classList.remove('jump');
+}
+function newPond(){changeTheme();const t=THEMES[sceneNo];$('stage-emoji').textContent=t.emoji;$('stage-title').textContent=t.name+'!';$('stage-description').textContent=t.caption;$('stage-toast').classList.add('show');pending=setTimeout(()=>{$('stage-toast').classList.remove('show');displayChallenge()},1500)}
+function chooseAnswer(button){if(locked)return;stopReading();const selected=button.dataset.tag;if(selected!==current.tag){wrong++;streak=0;updateProgress();$('message').textContent='💦 Oops! Try another lily pad!';$('message').className='message bad';button.classList.remove('bad');void button.offsetWidth;button.classList.add('bad');hopTo(button,true);sound(260,false);return}
+  locked=true;score++;streak++;updateProgress();lilyButtons.forEach(b=>b.disabled=true);button.classList.add('good');$('message').textContent=pick(['⭐ Great hop!','🌟 You got it!','🐸 Ribbit! Correct!','💚 Super job!']);$('message').className='message good';hopTo(button);sound(600);pending=setTimeout(()=>{if(score%10===0)newPond();else displayChallenge()},1000);
+}
+function startGame(){clearTimeout(pending);stopReading();level=Number($('level').value);score=0;streak=0;wrong=0;played=[];refill();$('stage-toast').classList.remove('show');$('rules').textContent=level===1?'Read the word. Tap the correct lily pad!':'Read the sentence. Sort the yellow word!';updateProgress();changeTheme();displayChallenge()}
+// The browser supplies the English voices; Microsoft Clara gets priority when available.
+function voiceKey(v){return v.name+'|'+v.lang+'|'+v.voiceURI}
+function voiceRank(v){const n=v.name||'';if(/\bclara\b/i.test(n))return 1000;
+  if(/microsoft/i.test(n)&&/natural|online/i.test(n))return 850;
+  if(/microsoft/i.test(n)&&/jenny|aria|sonia|ava|emma/i.test(n))return 750;
+  if(/google.*english/i.test(n))return 600;
+  if(/microsoft/i.test(n))return 500;
+  return 100+(v.default?20:0);
+}
+function activeVoice(){return (chosenVoiceKey==='auto'?null:voiceList.find(v=>voiceKey(v)===chosenVoiceKey))||voiceList[0]||null}
+function voiceStatus(){const status=$('voice-status');if(!('speechSynthesis' in window)){status.textContent='Reading aloud is not available in this browser.';return}
+  if(!voiceList.length){status.textContent='No English voices listed yet. Try “Find voices” after a moment.';return}
+  const v=activeVoice(),missing=chosenVoiceKey!=='auto'&&!voiceList.some(v=>voiceKey(v)===chosenVoiceKey);
+  status.textContent=(/\bclara\b/i.test(v.name)?'💚 Clara is ready! ':'🔊 Using ')+v.name+
+    (missing?' • Saved voice is unavailable here; using an alternative.':'')+
+    (v.localService?' • On-device':' • May require internet');
+}
+function refreshVoices(){if(!('speechSynthesis' in window)){
+    for(const id of ['voice-picker','voice-speed','voice-test','voice-refresh'])$(id).disabled=true;
+    voiceStatus();return;
+  }
+  voiceList=speechSynthesis.getVoices().filter(v=>/^en([_-]|$)/i.test(v.lang||''))
+    .sort((a,b)=>voiceRank(b)-voiceRank(a)||a.name.localeCompare(b.name));
+  const picker=$('voice-picker');picker.replaceChildren();
+  const auto=document.createElement('option');auto.value='auto';auto.textContent='⭐ Clara / best available (automatic)';picker.append(auto);
+  voiceList.forEach(v=>{const opt=document.createElement('option');opt.value=voiceKey(v);
+    opt.textContent=v.name+' ('+v.lang+')'+(/\bclara\b/i.test(v.name)?' ⭐':'');picker.append(opt)});
+  picker.value=voiceList.some(v=>voiceKey(v)===chosenVoiceKey)?chosenVoiceKey:'auto';
+  voiceStatus();
+}
+function stopReading(){clearTimeout(speechTimer);speechTimer=null;speechTicket++;
+  if('speechSynthesis' in window){try{speechSynthesis.cancel()}catch(e){}}
+}
+function speakText(text,automatic=false){if(!('speechSynthesis' in window)){
+    if(!automatic)$('message').textContent='Reading aloud is not supported in this browser.';
+    return;
+  }
+  stopReading();
+  try{
+    // Refresh if a browser delivered its voice list after the page loaded.
+    if(!voiceList.length)refreshVoices();
+    const u=new SpeechSynthesisUtterance(text),v=activeVoice();
+    u.lang=v?v.lang:'en-US';if(v)u.voice=v;
+    u.rate=Number($('voice-speed').value)||0.85;u.pitch=1;
+    u.onerror=e=>{if(e.error==='not-allowed'){
+      $('voice-status').textContent='The browser needs a first click before it can speak. Tap the word speaker once.';
+      if(automatic)$('message').textContent='🔊 Tap the speaker once to turn on reading.';
+    }};
+    speechSynthesis.speak(u);
+  }catch(e){if(!automatic)$('message').textContent='This voice could not play. Try another voice.'}
+}
+function readCurrent(){if(!current)return;const phrase=level===1?current.word:current.phrase;speakText(phrase)}
+function queueAutomaticReading(){stopReading();const ticket=speechTicket;
+  speechTimer=setTimeout(()=>{if(ticket!==speechTicket||locked||!current)return;
+    speakText(level===1?current.word:current.phrase,true);
+  },300);
+}
+lilyButtons.forEach(b=>b.addEventListener('click',()=>chooseAnswer(b)));
+$('read').addEventListener('click',readCurrent);
+$('level').addEventListener('change',startGame);
+$('restart-btn').addEventListener('click',startGame);
+$('sfx-btn').addEventListener('click',()=>{sfx=!sfx;$('sfx-btn').textContent=sfx?'♫ Sound on':'♫ Sound off';$('sfx-btn').setAttribute('aria-pressed',String(sfx))});
+$('voice-toggle').addEventListener('click',()=>{const panel=$('voice-panel');const opening=panel.hidden;panel.hidden=!opening;
+  $('voice-toggle').setAttribute('aria-expanded',String(opening));
+  $('voice-toggle').setAttribute('aria-label',opening?'Close reading voice settings':'Open reading voice settings');
+  if(opening)refreshVoices();
+});
+$('voice-picker').addEventListener('change',()=>{chosenVoiceKey=$('voice-picker').value;
+  try{localStorage.setItem(VOICE_STORAGE_KEY,chosenVoiceKey)}catch(e){}voiceStatus();
+});
+$('voice-speed').addEventListener('change',()=>{try{localStorage.setItem(SPEED_STORAGE_KEY,$('voice-speed').value)}catch(e){}});
+$('voice-test').addEventListener('click',()=>speakText('The happy frog jumps across the pond.'));
+$('voice-refresh').addEventListener('click',refreshVoices);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('voice-panel').hidden){$('voice-panel').hidden=true;
+  $('voice-toggle').setAttribute('aria-expanded','false');$('voice-toggle').setAttribute('aria-label','Open reading voice settings');$('voice-toggle').focus();
+}});
+if('speechSynthesis' in window){refreshVoices();speechSynthesis.addEventListener?.('voiceschanged',refreshVoices)}
+document.addEventListener('keydown',e=>{if(e.target&&['SELECT','BUTTON','INPUT','TEXTAREA'].includes(e.target.tagName))return;const k=e.key.toLowerCase();const tag=k==='n'?'noun':k==='v'?'verb':k==='a'?'adjective':null;if(tag){e.preventDefault();chooseAnswer(lilyButtons.find(b=>b.dataset.tag===tag))}});
+startGame();
+
+// Natural little blinks, sometimes a playful double-blink. Does not pause gameplay.
+function blinkFrog(){
+  const frog=$('frog');
+  if(!document.hidden){
+    frog.classList.add('blinking');
+    setTimeout(()=>{
+      frog.classList.remove('blinking');
+      if(Math.random()<.23){
+        setTimeout(()=>{
+          frog.classList.add('blinking');
+          setTimeout(()=>frog.classList.remove('blinking'),135);
+        },185);
+      }
+    },145);
+  }
+  setTimeout(blinkFrog,2900+Math.random()*3500);
+}
+if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  setTimeout(blinkFrog,1250+Math.random()*1250);
+}
+</script>
+</body>
+</html>
