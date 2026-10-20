@@ -52,6 +52,25 @@
 @media(max-width:490px){.voice-settings-toggle{font-size:15px;min-width:40px;padding:7px 6px}.voice-panel{left:0;right:auto;width:min(360px,calc(100vw - 32px))}}
 @media(max-width:490px){.shell{padding:12px 8px 20px}.header{margin:0 5px 11px}.brand-bubble{width:48px;height:48px;font-size:26px;border-radius:15px}.brand h1{font-size:26px}.brand p{font-size:11px}.tiny-button{font-size:12px;padding:7px 9px;min-height:37px}.topbar{padding:11px 10px;gap:8px}.field{gap:5px}.field select{font-size:13px;padding:8px}.stats{gap:4px;margin-left:0}.stat{min-width:57px;padding:5px}.stat strong{font-size:20px}.stat small{font-size:9px}.game{min-height:550px;border-width:3px;border-radius:22px}.challenge{margin-top:58px;padding:10px 9px 13px;min-height:105px}.challenge .word-prompt{font-size:clamp(27px,8vw,39px)}.challenge .word-prompt.level2{font-size:clamp(19px,5vw,25px)}.challenge .eyebrow{font-size:11px}.speak-button{width:40px;height:40px;right:-8px;top:-14px;font-size:19px}.frog-jumper{top:224px;width:96px;height:108px;left:calc(50% - 48px)}.pad-row{bottom:57px;gap:0}.lily{min-height:110px}.lily .leaf{inset:18px -3px 0}.lily .text{min-height:101px}.lily .tag-title{font-size:clamp(17px,4.8vw,22px)}.lily .tag-hint{font-size:9px}.message{font-size:12px;min-width:0;width:90%;bottom:168px;padding:8px 10px}.theme-stamp{font-size:10px;left:8px;padding:6px 9px}.decor{font-size:24px}.progress-box{gap:6px}.mini-star{height:16px;width:16px;font-size:10px}.progress-track{gap:3px}.pond-label{font-size:11px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+/* Compact teacher skill picker. All three lily pads remain as answer choices. */
+.topbar{position:relative;z-index:20}
+.skills-picker{position:relative;flex:0 0 auto}
+.skills-picker summary{list-style:none;display:flex;align-items:center;gap:9px;justify-content:space-between;min-height:43px;padding:9px 12px;border:2px solid #d5e8eb;border-radius:11px;background:#eef9fc;color:#245976;font-size:13px;font-weight:1000;cursor:pointer;user-select:none}
+.skills-picker summary::-webkit-details-marker{display:none}
+.skills-picker summary:focus-visible{outline:4px solid #f8a838;outline-offset:3px}
+.skills-picker[open] summary{background:#e1f6fc}
+.skills-picker .chevron{font-size:11px;transition:transform .2s}
+.skills-picker[open] .chevron{transform:rotate(180deg)}
+.skills-menu{position:absolute;top:calc(100% + 6px);left:0;z-index:100;width:260px;max-width:calc(100vw - 34px);padding:12px;border:2px solid #b9e6e5;border-radius:15px;background:#fff;box-shadow:0 13px 30px #22567b35}
+.skills-menu strong{display:block;color:#28627b;font-size:13px;margin:0 0 9px}
+.skill-choice{display:flex;gap:10px;align-items:center;padding:10px;border-radius:10px;margin-bottom:6px;cursor:pointer;font-size:14px;font-weight:1000}
+.skill-choice input{width:18px;height:18px;margin:0;cursor:pointer;flex:0 0 auto}
+.skill-choice:focus-within{outline:3px solid #ffce6d}
+.skill-choice.noun{background:#ffe6e8;color:#a32e43}.skill-choice.noun input{accent-color:#d93d5c}
+.skill-choice.verb{background:#e1fae6;color:#277b46}.skill-choice.verb input{accent-color:#229452}
+.skill-choice.adjective{background:#fff3c9;color:#90670b}.skill-choice.adjective input{accent-color:#d9a72b}
+.skill-hint{margin:7px 2px 2px;color:#547b89;font-size:11px;font-weight:800;line-height:1.45}
+@media(max-width:490px){.skills-picker summary{min-height:38px;padding:7px 9px;font-size:12px}.skills-menu{width:245px}}
 </style>
 </head>
 <body>
@@ -63,9 +82,9 @@
       <button class="tiny-button voice-settings-toggle" id="voice-toggle" type="button" aria-expanded="false" aria-controls="voice-panel" aria-label="Open reading voice settings" title="Choose a reading voice">🔊 <span class="voice-caret">▾</span></button>
       <button class="tiny-button" id="restart-btn" type="button">↻ New game</button>
       <section class="voice-panel" id="voice-panel" aria-label="Reading voice settings" hidden>
-        <div class="voice-panel-title">🎙️ Reading Voice <span>Clara preferred</span></div>
+        <div class="voice-panel-title">🎙️ Reading Voice <span>Brian in Edge · Clara in Chrome</span></div>
         <label class="voice-field" for="voice-picker">Choose a voice
-          <select id="voice-picker" aria-label="Reading voice"><option value="auto">⭐ Clara / best available</option></select>
+          <select id="voice-picker" aria-label="Reading voice"><option value="auto">⭐ Brian (Edge) · Clara (Chrome)</option></select>
         </label>
         <label class="voice-field" for="voice-speed">Reading speed
           <select id="voice-speed" aria-label="Reading speed">
@@ -85,6 +104,16 @@
   </header>
   <section class="topbar" aria-label="Game settings and score">
     <label class="field" for="level">Choose level <select id="level"><option value="1">🌱 Level 1 · Words</option><option value="2">🌼 Level 2 · Sentences</option></select></label>
+    <details class="skills-picker" id="skills-picker">
+      <summary id="skills-summary">🎯 Skills: All three <span class="chevron" aria-hidden="true">▾</span></summary>
+      <div class="skills-menu" aria-label="Parts of speech to practice">
+        <strong>Choose the words to practice</strong>
+        <label class="skill-choice noun"><input type="checkbox" value="noun" checked> Nouns</label>
+        <label class="skill-choice verb"><input type="checkbox" value="verb" checked> Verbs</label>
+        <label class="skill-choice adjective"><input type="checkbox" value="adjective" checked> Adjectives</label>
+        <p class="skill-hint" id="skills-hint">Choose one, two, or all three. All three lily pads stay so children still choose the answer. Changing skills starts a new game.</p>
+      </div>
+    </details>
     <div class="rules" id="rules">Read the word. Tap the correct lily pad!</div>
     <div class="stats"><div class="stat"><strong id="score">0</strong><small>Correct</small></div><div class="stat star"><strong id="streak">0</strong><small>In a row</small></div></div>
   </section>
@@ -186,14 +215,20 @@ const $=id=>document.getElementById(id);
 const shuffle=a=>{const x=a.slice();for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x};
 const pick=a=>a[Math.floor(Math.random()*a.length)];
 let level=1,score=0,streak=0,wrong=0,current=null,locked=false,played=[],deck={},tagDeck=[],sfx=true,sceneNo=0,pending=null;
-const VOICE_STORAGE_KEY='frogs-word-pond-voice-v1';
+const SKILL_TAGS=['noun','verb','adjective'];
+const SKILLS_STORAGE_KEY='frogs-word-pond-skills-v1';
+let enabledTags=SKILL_TAGS.slice();
+try{const saved=JSON.parse(localStorage.getItem(SKILLS_STORAGE_KEY));if(Array.isArray(saved)){const clean=SKILL_TAGS.filter(tag=>saved.includes(tag));if(clean.length)enabledTags=clean}}catch(e){}
+const IS_EDGE=/(?:Edg|EdgA|EdgiOS|Edge)\//i.test(navigator.userAgent);
+// A fresh preference key makes the new browser-specific default apply on first opening.
+const VOICE_STORAGE_KEY='frogs-word-pond-voice-v2';
 const SPEED_STORAGE_KEY='frogs-word-pond-speed-v1';
 let voiceList=[],chosenVoiceKey='auto',speechTimer=null,speechTicket=0;
 try{chosenVoiceKey=localStorage.getItem(VOICE_STORAGE_KEY)||'auto'}catch(e){}
 try{const stored=localStorage.getItem(SPEED_STORAGE_KEY);if(['0.75','0.85','1'].includes(stored))$('voice-speed').value=stored}catch(e){}
 const lilyButtons=[...document.querySelectorAll('.lily')];
-function refill(){for(const tag of Object.keys(BANK))deck[tag]=shuffle([...new Set(BANK[tag])]);tagDeck=shuffle(['noun','verb','adjective']);}
-function newTag(){if(!tagDeck.length)tagDeck=shuffle(['noun','verb','adjective']);return tagDeck.pop();}
+function refill(){for(const tag of Object.keys(BANK))deck[tag]=shuffle([...new Set(BANK[tag])]);tagDeck=shuffle(enabledTags);}
+function newTag(){if(!tagDeck.length)tagDeck=shuffle(enabledTags);return tagDeck.pop();}
 function wordChallenge(){const tag=newTag();if(!deck[tag].length)deck[tag]=shuffle([...new Set(BANK[tag])]);return {tag,word:deck[tag].pop()};}
 function sentenceChallenge(){let phrase,arr,tryCount=0;
   do{const scene=pick(SCENES),s=pick(scene.s).split(' '),o=pick(scene.o).split(' '),v=pick(scene.v);
@@ -231,9 +266,10 @@ function chooseAnswer(button){if(locked)return;stopReading();const selected=butt
   locked=true;score++;streak++;updateProgress();lilyButtons.forEach(b=>b.disabled=true);button.classList.add('good');$('message').textContent=pick(['⭐ Great hop!','🌟 You got it!','🐸 Ribbit! Correct!','💚 Super job!']);$('message').className='message good';hopTo(button);sound(600);pending=setTimeout(()=>{if(score%10===0)newPond();else displayChallenge()},1000);
 }
 function startGame(){clearTimeout(pending);stopReading();level=Number($('level').value);score=0;streak=0;wrong=0;played=[];refill();$('stage-toast').classList.remove('show');$('rules').textContent=level===1?'Read the word. Tap the correct lily pad!':'Read the sentence. Sort the yellow word!';updateProgress();changeTheme();displayChallenge()}
-// The browser supplies the English voices; Microsoft Clara gets priority when available.
+// Prefer Brian in Edge and Clara in Chrome; preserve existing natural speech speed.
 function voiceKey(v){return v.name+'|'+v.lang+'|'+v.voiceURI}
-function voiceRank(v){const n=v.name||'';if(/\bclara\b/i.test(n))return 1000;
+function voiceRank(v){const n=v.name||'';if(IS_EDGE&&/\bbrian\b/i.test(n))return 1100;
+  if(/\bclara\b/i.test(n))return 1000;
   if(/microsoft/i.test(n)&&/natural|online/i.test(n))return 850;
   if(/microsoft/i.test(n)&&/jenny|aria|sonia|ava|emma/i.test(n))return 750;
   if(/google.*english/i.test(n))return 600;
@@ -244,7 +280,7 @@ function activeVoice(){return (chosenVoiceKey==='auto'?null:voiceList.find(v=>vo
 function voiceStatus(){const status=$('voice-status');if(!('speechSynthesis' in window)){status.textContent='Reading aloud is not available in this browser.';return}
   if(!voiceList.length){status.textContent='No English voices listed yet. Try “Find voices” after a moment.';return}
   const v=activeVoice(),missing=chosenVoiceKey!=='auto'&&!voiceList.some(v=>voiceKey(v)===chosenVoiceKey);
-  status.textContent=(/\bclara\b/i.test(v.name)?'💚 Clara is ready! ':'🔊 Using ')+v.name+
+  status.textContent=(/\bbrian\b/i.test(v.name)?'💚 Brian is ready! ':/\bclara\b/i.test(v.name)?'💚 Clara is ready! ':'🔊 Using ')+v.name+
     (missing?' • Saved voice is unavailable here; using an alternative.':'')+
     (v.localService?' • On-device':' • May require internet');
 }
@@ -255,9 +291,9 @@ function refreshVoices(){if(!('speechSynthesis' in window)){
   voiceList=speechSynthesis.getVoices().filter(v=>/^en([_-]|$)/i.test(v.lang||''))
     .sort((a,b)=>voiceRank(b)-voiceRank(a)||a.name.localeCompare(b.name));
   const picker=$('voice-picker');picker.replaceChildren();
-  const auto=document.createElement('option');auto.value='auto';auto.textContent='⭐ Clara / best available (automatic)';picker.append(auto);
+  const auto=document.createElement('option');auto.value='auto';auto.textContent='⭐ Brian (Edge) · Clara (Chrome), if available';picker.append(auto);
   voiceList.forEach(v=>{const opt=document.createElement('option');opt.value=voiceKey(v);
-    opt.textContent=v.name+' ('+v.lang+')'+(/\bclara\b/i.test(v.name)?' ⭐':'');picker.append(opt)});
+    opt.textContent=v.name+' ('+v.lang+')'+((IS_EDGE?/\bbrian\b/i:/\bclara\b/i).test(v.name)?' ⭐':'');picker.append(opt)});
   picker.value=voiceList.some(v=>voiceKey(v)===chosenVoiceKey)?chosenVoiceKey:'auto';
   voiceStatus();
 }
@@ -290,6 +326,22 @@ function queueAutomaticReading(){stopReading();const ticket=speechTicket;
 }
 lilyButtons.forEach(b=>b.addEventListener('click',()=>chooseAnswer(b)));
 $('read').addEventListener('click',readCurrent);
+function syncSkillChoices(){
+  const names={noun:'Nouns',verb:'Verbs',adjective:'Adjectives'};
+  document.querySelectorAll('.skill-choice input').forEach(box=>box.checked=enabledTags.includes(box.value));
+  const description=enabledTags.length===3?'All three':enabledTags.map(tag=>names[tag]).join(' + ');
+  $('skills-summary').innerHTML='🎯 Skills: '+description+' <span class="chevron" aria-hidden="true">▾</span>';
+}
+syncSkillChoices();
+document.querySelectorAll('.skill-choice input').forEach(box=>box.addEventListener('change',()=>{
+  const checked=[...document.querySelectorAll('.skill-choice input:checked')].map(el=>el.value);
+  if(!checked.length){box.checked=true;$('skills-hint').textContent='Please keep at least one skill selected.';return}
+  enabledTags=SKILL_TAGS.filter(tag=>checked.includes(tag));
+  try{localStorage.setItem(SKILLS_STORAGE_KEY,JSON.stringify(enabledTags))}catch(e){}
+  $('skills-hint').textContent='Choose one, two, or all three. All three lily pads stay so children still choose the answer. Changing skills starts a new game.';
+  syncSkillChoices();startGame();
+}));
+document.addEventListener('click',e=>{const picker=$('skills-picker');if(picker.open&&!picker.contains(e.target))picker.open=false});
 $('level').addEventListener('change',startGame);
 $('restart-btn').addEventListener('click',startGame);
 $('sfx-btn').addEventListener('click',()=>{sfx=!sfx;$('sfx-btn').textContent=sfx?'♫ Sound on':'♫ Sound off';$('sfx-btn').setAttribute('aria-pressed',String(sfx))});
